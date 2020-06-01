@@ -1,0 +1,136 @@
+#+TITLE: Python mnemonic usage
+#+OPTIONS: ^:nil
+#+PROPERTY: header-args:sh :session *shell python-mnemonic-usage sh* :results silent raw
+#+PROPERTY: header-args:python :session *shell python-mnemonic-usage python* :results replace code
+
+** System environment
+
+** Install requirements
+
+#+BEGIN_SRC sh
+pip install mnemonic
+#+END_SRC
+
+** Imports
+
+#+BEGIN_SRC python :results silent
+from mnemonic import Mnemonic
+#+END_SRC
+
+** Init
+
+#+BEGIN_SRC python :results silent
+m = Mnemonic("english")
+#+END_SRC
+
+** List languages
+
+#+BEGIN_SRC python
+Mnemonic.list_languages()
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+['japanese', 'chinese_simplified', 'english', 'french', 'chinese_traditional', 'italian', 'korean', 'spanish']
+#+end_src
+
+** Generate
+
+#+BEGIN_SRC python
+words = m.generate(512)
+len(words), words
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+(len(words.split(' ')), 'shop device federal decide area cloud comic medal glory sound pen talent green stadium trip away skill hockey you crumble maple siege peasant surge')
+#+end_src
+
+#+RESULTS:
+#+begin_src python
+(24, 'shop device federal decide area cloud comic medal glory sound pen talent green stadium trip away skill hockey you crumble maple siege peasant surge')
+#+end_src
+
+** To entropy
+
+#+BEGIN_SRC python
+entropy = m.to_entropy(words)
+len(entropy), entropy.hex()
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+(32, 'c6a795519c60b457cb94526399fa89eeb665a7fa3083ca6d8ffc9a687990288e')
+#+end_src
+
+** To mnemonic
+
+#+BEGIN_SRC python
+m.to_mnemonic(entropy)
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+shop device federal decide area cloud comic medal glory sound pen talent green stadium trip away skill hockey you crumble maple siege peasant surge
+#+end_src
+
+** Check
+
+#+BEGIN_SRC python
+m.check(words)
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+True
+#+end_src
+
+** Expand
+
+#+BEGIN_SRC python
+m.expand_word("cem")
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+cement
+#+end_src
+
+** To seed
+
+With password protection.
+
+#+BEGIN_SRC python
+seed = Mnemonic.to_seed(words, "password")
+len(seed), seed.hex()
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+(64, '92f1da6aad96cc70206cd2b055a8e26425cde676a728eebe9f899e9f8396bf36fe698b5e3bb364463d521248383ae3a23ab1cfc3605f534b5869492adf7ea891')
+#+end_src
+
+Without password protection.
+
+#+BEGIN_SRC python
+seed = Mnemonic.to_seed(words, "")
+len(seed), seed.hex()
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+(64, 'b5cf116d11d4338b1a5d0971ba1fe40d19d360d7f6014c7a6fc8925fd1e18aaa8d539c5756f06e57bfc24c74a3641c93af9553d907d6dd66f791d4e86d190840')
+#+end_src
+
+** To HD master key
+
+#+BEGIN_SRC python
+Mnemonic.to_hd_master_key(seed)
+#+END_SRC
+
+#+RESULTS:
+#+begin_src python
+xprv9s21ZrQH143K4CpiRKJX4bnVcxvzkJheXJ8kYBspNruuR7EZVgNvpUBgJRXzuhDK9TER9axkRJCip6EjsAPd5afwJpD2McCVEHQt6nzYznu
+#+end_src
+
+** References
