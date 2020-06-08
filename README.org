@@ -5,6 +5,14 @@
 
 ** System environment
 
+- Debian 9.11
+
+- Python 3.7.0
+
+Python modules:
+
+- mnemonic==0.19
+
 ** Install requirements
 
 #+BEGIN_SRC sh
