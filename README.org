@@ -1,7 +1,7 @@
 #+TITLE: Python mnemonic usage
-#+OPTIONS: ^:nil
 #+PROPERTY: header-args:sh :session *shell python-mnemonic-usage sh* :results silent raw
 #+PROPERTY: header-args:python :session *shell python-mnemonic-usage python* :results replace code
+#+OPTIONS: ^:nil
 
 ** System environment
 
@@ -37,18 +37,13 @@ Mnemonic.list_languages()
 ** Generate
 
 #+BEGIN_SRC python
-words = m.generate(512)
-len(words), words
+words = m.generate(256)
+len(words.split(" ")), words
 #+END_SRC
 
 #+RESULTS:
 #+begin_src python
-(len(words.split(' ')), 'shop device federal decide area cloud comic medal glory sound pen talent green stadium trip away skill hockey you crumble maple siege peasant surge')
-#+end_src
-
-#+RESULTS:
-#+begin_src python
-(24, 'shop device federal decide area cloud comic medal glory sound pen talent green stadium trip away skill hockey you crumble maple siege peasant surge')
+(24, 'device brush where mesh citizen rich local fiber air enroll stool pair advance joy connect equal crouch sadness dream sun athlete whip foam cry')
 #+end_src
 
 ** To entropy
@@ -60,7 +55,7 @@ len(entropy), entropy.hex()
 
 #+RESULTS:
 #+begin_src python
-(32, 'c6a795519c60b457cb94526399fa89eeb665a7fa3083ca6d8ffc9a687990288e')
+(32, '3ca3a7e945e29572a0d2ad05696759cf803ef10bca603437bd0a6ca0e3f4d681')
 #+end_src
 
 ** To mnemonic
@@ -71,7 +66,7 @@ m.to_mnemonic(entropy)
 
 #+RESULTS:
 #+begin_src python
-shop device federal decide area cloud comic medal glory sound pen talent green stadium trip away skill hockey you crumble maple siege peasant surge
+device brush where mesh citizen rich local fiber air enroll stool pair advance joy connect equal crouch sadness dream sun athlete whip foam cry
 #+end_src
 
 ** Check
@@ -107,7 +102,7 @@ len(seed), seed.hex()
 
 #+RESULTS:
 #+begin_src python
-(64, '92f1da6aad96cc70206cd2b055a8e26425cde676a728eebe9f899e9f8396bf36fe698b5e3bb364463d521248383ae3a23ab1cfc3605f534b5869492adf7ea891')
+(64, 'ab401f25667c0f642ab2d438b366f11ab5c997510ca181cbcb6fa9368a84d929b6a0a92fa5a173bf6fae22538e174db06189484a185c7c745fe5b356359ff5d4')
 #+end_src
 
 Without password protection.
@@ -119,7 +114,7 @@ len(seed), seed.hex()
 
 #+RESULTS:
 #+begin_src python
-(64, 'b5cf116d11d4338b1a5d0971ba1fe40d19d360d7f6014c7a6fc8925fd1e18aaa8d539c5756f06e57bfc24c74a3641c93af9553d907d6dd66f791d4e86d190840')
+(64, 'b58a216a3e60da8132d943279359faffe52428335b433fd3afb60423f2d2f826fd1ebbecee1ee7aa5a289132cc7171c514ddd0c98ee30cfdb0b47cfa76704525')
 #+end_src
 
 ** To HD master key
@@ -130,7 +125,7 @@ Mnemonic.to_hd_master_key(seed)
 
 #+RESULTS:
 #+begin_src python
-xprv9s21ZrQH143K4CpiRKJX4bnVcxvzkJheXJ8kYBspNruuR7EZVgNvpUBgJRXzuhDK9TER9axkRJCip6EjsAPd5afwJpD2McCVEHQt6nzYznu
+xprv9s21ZrQH143K3LC9NVkufJP9qfe9yrzPhNgeez3wxi2LsusC9qGSyPtvUPFhDuS3LCb4W6XmjPEKEcULUxy9TvJ5MhNeYB9SAx2eBzbtt5E
 #+end_src
 
 ** References
